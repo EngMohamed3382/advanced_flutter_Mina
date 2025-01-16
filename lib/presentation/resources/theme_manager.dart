@@ -1,6 +1,5 @@
 import 'package:advanced_flutter/presentation/resources/color_manager.dart';
 import 'package:flutter/material.dart';
-
 import 'font_manager.dart';
 import 'styles_manager.dart';
 import 'values_manager.dart';
@@ -58,12 +57,12 @@ ThemeData getApplicationTheme() {
     textTheme: TextTheme(
       displayLarge:
           getLightStyle(color: ColorManager.white, fontSize: FontSize.s22),
-      displayMedium: getSemiBoldStyle(
+      headlineLarge: getSemiBoldStyle(
           color: ColorManager.darkGrey, fontSize: FontSize.s16),
       titleMedium:
           getMediumStyle(color: ColorManager.lightGrey, fontSize: FontSize.s14),
-      bodySmall: getRegularStyle(color: ColorManager.grey1),
-      bodyLarge: getRegularStyle(color: ColorManager.grey),
+      bodyLarge: getRegularStyle(color: ColorManager.grey1),
+      bodySmall: getRegularStyle(color: ColorManager.grey),
     ),
 
     // input Decoration theme ( text form field)
