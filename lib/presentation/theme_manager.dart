@@ -55,13 +55,61 @@ ThemeData getApplicationTheme() {
     // Text Theme
 
     textTheme: TextTheme(
-      displayLarge: getLightStyle(color: ColorManager.white,fontSize: FontSize.s22),
-      displayMedium: getSemiBoldStyle(color: ColorManager.darkGrey, fontSize: FontSize.s16),
-      titleMedium: getMediumStyle(color: ColorManager.lightGrey,fontSize: FontSize.s14),
+      displayLarge:
+          getLightStyle(color: ColorManager.white, fontSize: FontSize.s22),
+      displayMedium: getSemiBoldStyle(
+          color: ColorManager.darkGrey, fontSize: FontSize.s16),
+      titleMedium:
+          getMediumStyle(color: ColorManager.lightGrey, fontSize: FontSize.s14),
       bodySmall: getRegularStyle(color: ColorManager.grey1),
       bodyLarge: getRegularStyle(color: ColorManager.grey),
-    )
+    ),
 
     // input Decoration theme ( text form field)
+
+    inputDecorationTheme: InputDecorationTheme(
+      // content Padding
+      contentPadding: EdgeInsets.all(AppPadding.p8),
+      hintStyle:
+          getRegularStyle(color: ColorManager.grey, fontSize: FontSize.s14),
+      // Label style
+      labelStyle:
+          getMediumStyle(color: ColorManager.grey, fontSize: FontSize.s14),
+      // Error Style
+      errorStyle: getRegularStyle(color: ColorManager.error),
+      // Enable Border
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: ColorManager.primary, width: AppSize.s1_5),
+        borderRadius: BorderRadius.all(
+          Radius.circular(AppSize.s8),
+        ),
+      ),
+
+      // focused border style
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: ColorManager.grey, width: AppSize.s1_5),
+        borderRadius: BorderRadius.all(
+          Radius.circular(AppSize.s8),
+        ),
+      ),
+
+      // error Border Style
+
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: ColorManager.error, width: AppSize.s1_5),
+        borderRadius: BorderRadius.all(
+          Radius.circular(AppSize.s8),
+        ),
+      ),
+
+      // focused border style
+
+      focusedErrorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: ColorManager.primary, width: AppSize.s1_5),
+        borderRadius: BorderRadius.all(
+          Radius.circular(AppSize.s8),
+        ),
+      ),
+    ),
   );
 }
