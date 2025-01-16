@@ -1,4 +1,5 @@
 import 'package:advanced_flutter/presentation/color_manager.dart';
+import 'package:advanced_flutter/presentation/theme_manager.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatefulWidget {
@@ -20,7 +21,7 @@ factory MyApp() => _instance;  // factory
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return MaterialApp(theme: getApplicationTheme(),);
   }
 }
 
