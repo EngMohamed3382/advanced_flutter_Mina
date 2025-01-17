@@ -1,3 +1,5 @@
+import 'dart:nativewrappers/_internal/vm/lib/mirrors_patch.dart';
+
 import 'package:advanced_flutter/presentation/resources/assets_manager.dart';
 import 'package:advanced_flutter/presentation/resources/color_manager.dart';
 import 'package:advanced_flutter/presentation/resources/strings_manager.dart';
@@ -66,10 +68,70 @@ class _OnboardingViewState extends State<OnBoardingView> {
               ),
             ),
             // widgets indicator and arrows
+            _getBottomSheetWidget()
           ],
         ),
       ),
     );
+  }
+
+  Widget _getBottomSheetWidget(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        // left arrow
+        Padding(
+          padding: const EdgeInsets.all(AppPadding.p14),
+          child: GestureDetector(
+          child: SizedBox(
+            height: AppSize.s20,
+            width: AppSize.s20,
+            child: SvgPicture.asset(ImageAssets.leftArrowIc),
+          ),
+        ),
+        ),
+
+// Circle Indicators
+      Row(
+        children: [
+          for(int i = 0;  i < _list.length ; i++ )
+            Padding(padding: const EdgeInsets.all(AppPadding.p8),
+            child: _getProperCircle(i),
+            )
+
+        ],
+      )
+
+
+
+
+
+
+
+
+
+
+        // Right Arrow
+        Padding(
+          padding: const EdgeInsets.all(AppPadding.p14),
+          child: GestureDetector(
+            child: SizedBox(
+              height: AppSize.s20,
+              width: AppSize.s20,
+              child: SvgPicture.asset(ImageAssets.rightArrowIc),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+  Widget _getProperCircle(int index){
+    if(index == _currentIndex){
+      return SvgPicture.asset(ImageAssets.hollowCircleIc);
+    }
+    else{
+      return SvgPicture.asset(ImageAssets.solidCircleIc);
+    }
   }
 }
 
