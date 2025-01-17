@@ -1,12 +1,14 @@
-import 'dart:nativewrappers/_internal/vm/lib/mirrors_patch.dart';
-
 import 'package:advanced_flutter/presentation/resources/assets_manager.dart';
 import 'package:advanced_flutter/presentation/resources/color_manager.dart';
+import 'package:advanced_flutter/presentation/resources/constants_manager.dart';
 import 'package:advanced_flutter/presentation/resources/strings_manager.dart';
 import 'package:advanced_flutter/presentation/resources/values_manager.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../resources/routes_manager.dart';
+
+
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({super.key});
@@ -60,7 +62,9 @@ class _OnboardingViewState extends State<OnBoardingView> {
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, Routes.loginRoute);
+                },
                 child: const Text(
                   AppStrings.skip,
                   textAlign: TextAlign.end,
@@ -88,6 +92,10 @@ class _OnboardingViewState extends State<OnBoardingView> {
             width: AppSize.s20,
             child: SvgPicture.asset(ImageAssets.leftArrowIc),
           ),
+            onTap: (){
+            // go to Previous Slide
+              _pageController.animateToPage(_getPreviousIndex(), duration: const Duration(milliseconds: AppConstants.sliderAnimationTime), curve: Curves.bounceInOut);
+            },
         ),
         ),
 
@@ -100,7 +108,7 @@ class _OnboardingViewState extends State<OnBoardingView> {
             )
 
         ],
-      )
+      ),
 
 
 
@@ -120,11 +128,32 @@ class _OnboardingViewState extends State<OnBoardingView> {
               width: AppSize.s20,
               child: SvgPicture.asset(ImageAssets.rightArrowIc),
             ),
+            onTap: (){
+              // go to Next Slide
+              _pageController.animateToPage(_getNextIndex(), duration: const Duration(milliseconds: AppConstants.sliderAnimationTime), curve: Curves.bounceInOut);
+            },
           ),
         ),
       ],
     );
   }
+
+  int _getPreviousIndex(){
+    int previousIndex = _currentIndex--;
+    if(previousIndex == -1){
+      previousIndex = _list.length -1;
+    }
+    return previousIndex;
+  }
+  int _getNextIndex(){
+    int nextIndex = _currentIndex++;
+    if(nextIndex == _list.length){
+      nextIndex = 0;
+    }
+    return nextIndex;
+  }
+
+
   Widget _getProperCircle(int index){
     if(index == _currentIndex){
       return SvgPicture.asset(ImageAssets.hollowCircleIc);
