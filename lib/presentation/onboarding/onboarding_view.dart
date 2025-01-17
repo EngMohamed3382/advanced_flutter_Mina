@@ -2,6 +2,7 @@ import 'package:advanced_flutter/presentation/resources/assets_manager.dart';
 import 'package:advanced_flutter/presentation/resources/color_manager.dart';
 import 'package:advanced_flutter/presentation/resources/strings_manager.dart';
 import 'package:advanced_flutter/presentation/resources/values_manager.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -31,24 +32,44 @@ class _OnboardingViewState extends State<OnBoardingView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: ColorManager.white,
-        appBar: AppBar(
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: ColorManager.white,
-            statusBarBrightness: Brightness.dark,
-          ),
+      backgroundColor: ColorManager.white,
+      appBar: AppBar(
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: ColorManager.white,
+          statusBarBrightness: Brightness.dark,
         ),
-        body: PageView.builder(
-            controller: _pageController,
-            itemCount: _list.length,
-            onPageChanged: (index) {
-              setState(() {
-                _currentIndex = index;
-              });
-            },
-            itemBuilder: (context, index) {
-              // return onboarding page
-            }));
+      ),
+      body: PageView.builder(
+          controller: _pageController,
+          itemCount: _list.length,
+          onPageChanged: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+          itemBuilder: (context, index) {
+            return OnBoardingPage(_list[index]);
+          }),
+      bottomSheet: Container(
+        color: ColorManager.white,
+        height: AppSize.s100,
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {},
+                child: const Text(
+                  AppStrings.skip,
+                  textAlign: TextAlign.end,
+                ),
+              ),
+            ),
+            // widgets indicator and arrows
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -72,7 +93,6 @@ class OnBoardingPage extends StatelessWidget {
             style: Theme.of(context).textTheme.displayLarge,
           ),
         ),
-
         Padding(
           padding: const EdgeInsets.all(AppPadding.p8),
           child: Text(
@@ -84,6 +104,7 @@ class OnBoardingPage extends StatelessWidget {
         const SizedBox(
           height: AppSize.s60,
         ),
+        SvgPicture.asset(_sliderObject.image)
       ],
     );
   }
