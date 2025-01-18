@@ -6,7 +6,7 @@ import 'package:advanced_flutter/presentation/splash/splash_view.dart';
 import 'package:advanced_flutter/presentation/store_details/store_details_view.dart';
 import 'package:flutter/material.dart';
 import '../login/login_view.dart';
-import '../onboarding/onboarding_view.dart';
+import '../onboarding/view/onboarding_view.dart';
 
 class Routes {
   static const String splashRoute = "/";
