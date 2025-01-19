@@ -8,7 +8,7 @@ import '../../resources/strings_manager.dart';
 class OnBoardingViewModel extends BaseViewModel
     implements OnBoardingViewModelInputs, OnBoardingViewModelOutputs {
   // stream controllers outputs
-  StreamController _streamController = StreamController<SliderViewObject>();
+  final StreamController _streamController = StreamController<SliderViewObject>();
   late final List<SliderObject> _list;
   int _currentIndex = 0;
   //OnBoarding ViewModel Inputs

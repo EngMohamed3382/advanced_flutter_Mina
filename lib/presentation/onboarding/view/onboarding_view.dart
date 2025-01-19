@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../resources/routes_manager.dart';
+import '../viewmodel/onboarding_viewmodel.dart';
 
 
 
@@ -20,11 +21,25 @@ class OnBoardingView extends StatefulWidget {
 class _OnboardingViewState extends State<OnBoardingView> {
 
   final PageController _pageController = PageController();
+  final OnBoardingViewModel _viewModel = OnBoardingViewModel();
+
+  _bind(){
+    _viewModel.start();
+  }
+
+  @override
+  void initState() {
+    _bind();
+    super.initState();
+  }
 
 
 
   @override
   Widget build(BuildContext context) {
+    return _getContentWidget();
+  }
+  Widget _getContentWidget(){
     return Scaffold(
       backgroundColor: ColorManager.white,
       appBar: AppBar(
@@ -141,7 +156,7 @@ class _OnboardingViewState extends State<OnBoardingView> {
 
   @override
   void dispose() {
-    // TODO: viewmodel.dispose()
+    _viewModel.dispose();
     super.dispose();
   }
 }
